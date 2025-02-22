@@ -6,9 +6,11 @@ import jakarta.validation.constraints.Size;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 @Data
 @Entity
+@Document(collection = "usuario")
 @Table(name = "usuario")
 public class Usuario {
     @Id
