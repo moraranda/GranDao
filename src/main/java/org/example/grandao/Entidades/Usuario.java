@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Data
+@Entity
 @Table(name = "usuario")
 public class Usuario {
     @Id
