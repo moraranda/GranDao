@@ -1,6 +1,6 @@
 package org.example.grandao.DAO;
 
-import org.example.grandao.Entidades.Usuario;
+import org.example.grandao.Entidades.UsuarioJPA;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -15,19 +15,19 @@ import java.util.List;
 @XmlRootElement(name = "usuarios")
 public class UsuarioXMLDAO {
 
-    private List<Usuario> usuarios = new ArrayList<>();
+    private List<UsuarioJPA> usuarios = new ArrayList<>();
 
     @XmlElement(name = "usuario")
-    public List<Usuario> getUsuarios() {
+    public List<UsuarioJPA> getUsuarios() {
         return usuarios;
     }
 
-    public void setUsuarios(List<Usuario> usuarios) {
+    public void setUsuarios(List<UsuarioJPA> usuarios) {
         this.usuarios = usuarios;
     }
 
     // Metodo para leer usuarios desde el archivo XML
-    public List<Usuario> leerUsuariosDesdeXML(String rutaArchivo) throws JAXBException {
+    public List<UsuarioJPA> leerUsuariosDesdeXML(String rutaArchivo) throws JAXBException {
         File file = new File(rutaArchivo);
         JAXBContext context = JAXBContext.newInstance(UsuarioXMLDAO.class);
         Unmarshaller unmarshaller = context.createUnmarshaller();
@@ -36,9 +36,9 @@ public class UsuarioXMLDAO {
     }
 
     // Metodo para insertar un usuario en el archivo XML
-    public void insertarUsuarioEnXML(Usuario usuario, String rutaArchivo) throws JAXBException {
+    public void insertarUsuarioEnXML(UsuarioJPA usuario, String rutaArchivo) throws JAXBException {
 
-        List<Usuario> usuarios = leerUsuariosDesdeXML(rutaArchivo);
+        List<UsuarioJPA> usuarios = leerUsuariosDesdeXML(rutaArchivo);
 
         // Agregar el nuevo usuario
         usuarios.add(usuario);

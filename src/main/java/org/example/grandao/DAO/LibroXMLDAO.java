@@ -1,6 +1,6 @@
 package org.example.grandao.DAO;
 
-import org.example.grandao.Entidades.Libro;
+import org.example.grandao.Entidades.LibroJPA;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -15,19 +15,19 @@ import java.util.List;
 @XmlRootElement(name = "libros")
 public class LibroXMLDAO {
 
-    private List<Libro> books = new ArrayList<>();
+    private List<LibroJPA> books = new ArrayList<>();
 
     @XmlElement(name = "libro")
-    public List<Libro> getBooks() {
+    public List<LibroJPA> getBooks() {
         return books;
     }
 
-    public void setBooks(List<Libro> books) {
+    public void setBooks(List<LibroJPA> books) {
         this.books = books;
     }
 
     // Metodo para leer libros desde el archivo XML
-    public List<Libro> readBooksFromXML(String filePath) throws JAXBException {
+    public List<LibroJPA> readBooksFromXML(String filePath) throws JAXBException {
         File file = new File(filePath);
         JAXBContext context = JAXBContext.newInstance(LibroXMLDAO.class);
 
@@ -38,8 +38,8 @@ public class LibroXMLDAO {
     }
 
     // Metodo para insertar un libro en el archivo XML
-    public void insertBookInXML(Libro book, String filePath) throws JAXBException {
-        List<Libro> books = readBooksFromXML(filePath);
+    public void insertBookInXML(LibroJPA book, String filePath) throws JAXBException {
+        List<LibroJPA> books = readBooksFromXML(filePath);
 
         // Agregamos el nuevo libro
         books.add(book);

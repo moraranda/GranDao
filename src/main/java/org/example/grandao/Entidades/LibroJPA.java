@@ -8,9 +8,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @Data
 @Entity
-@Document(collection = "libro")
 //@Table(name = "libro")
-public class Libro {
+public class LibroJPA {
     @Id
     @Size(max = 20)
     @Column(name = "isbn", nullable = false, length = 20)

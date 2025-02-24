@@ -1,7 +1,7 @@
 package org.example.grandao.Controladores;
 
-import org.example.grandao.Entidades.Usuario;
-import org.example.grandao.Repositorio.RepositorioUsuarioMDB;
+import org.example.grandao.Entidades.UsuarioMDB;
+import org.example.grandao.RepositorioMDB.RepositorioUsuarioMDB;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,29 +17,29 @@ public class ControladorUsuarioMDB {
 
     // Obtener todos los usuarios
     @GetMapping
-    public List<Usuario> findAll() {
+    public List<UsuarioMDB> findAll() {
         return usuarioRepository.findAll();
     }
 
     // Obtener un usuario por ID
     @GetMapping("/{id}")
-    public ResponseEntity<Usuario> findById(@PathVariable String id) {
-        Optional<Usuario> usuario = usuarioRepository.findById(id);
+    public ResponseEntity<UsuarioMDB> findById(@PathVariable String id) {
+        Optional<UsuarioMDB> usuario = usuarioRepository.findById(id);
         return usuario.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     // Crear un usuario
     @PostMapping
-    public Usuario save(@RequestBody Usuario usuario) {
+    public UsuarioMDB save(@RequestBody UsuarioMDB usuario) {
         return usuarioRepository.save(usuario);
     }
 
     // Actualizar un usuario por ID
     @PutMapping("/{id}")
-    public ResponseEntity<Usuario> update(@PathVariable String id, @RequestBody Usuario usuarioDetails) {
-        Optional<Usuario> usuarioOptional = usuarioRepository.findById(id);
+    public ResponseEntity<UsuarioMDB> update(@PathVariable String id, @RequestBody UsuarioMDB usuarioDetails) {
+        Optional<UsuarioMDB> usuarioOptional = usuarioRepository.findById(id);
         if (usuarioOptional.isPresent()) {
-            Usuario usuario = usuarioOptional.get();
+            UsuarioMDB usuario = usuarioOptional.get();
             usuario.setDni(usuarioDetails.getDni());
             usuario.setNombre(usuarioDetails.getNombre());
             usuario.setPassword(usuarioDetails.getPassword());

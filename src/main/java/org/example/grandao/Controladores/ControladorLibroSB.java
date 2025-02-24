@@ -1,6 +1,6 @@
 package org.example.grandao.Controladores;
 
-import org.example.grandao.Entidades.Libro;
+import org.example.grandao.Entidades.LibroJPA;
 import org.example.grandao.Repositorio.RepositorioLibroSB;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
@@ -22,8 +22,8 @@ public class ControladorLibroSB {
 
     // GET -> SELECT
     @GetMapping
-    public ResponseEntity<List<Libro>> getBooks() {
-        List<Libro> books = this.repository.findAll();
+    public ResponseEntity<List<LibroJPA>> getBooks() {
+        List<LibroJPA> books = this.repository.findAll();
         System.out.println(books);
 
         return ResponseEntity.ok(books);
@@ -32,22 +32,22 @@ public class ControladorLibroSB {
     // GET BY ID -> SELECT BY ID
     @GetMapping("/{id}")
     @Cacheable
-    public ResponseEntity<Libro> getBookById(@PathVariable String isbn) {
-        Libro book = this.repository.findById(isbn).get();
+    public ResponseEntity<LibroJPA> getBookById(@PathVariable String isbn) {
+        LibroJPA book = this.repository.findById(isbn).get();
         return ResponseEntity.ok(book);
     }
 
     // POST -> INSERT
     @PostMapping("/libro")
-    public ResponseEntity<Libro> addBook(@RequestBody Libro book) {
-        Libro savedBooks = this.repository.save(book);
+    public ResponseEntity<LibroJPA> addBook(@RequestBody LibroJPA book) {
+        LibroJPA savedBooks = this.repository.save(book);
         return ResponseEntity.ok().body(savedBooks);
     }
 
     // PUT -> UPDATE
     @PutMapping("/{id}")
-    public ResponseEntity<Libro> updateBook(@RequestBody Libro book, @PathVariable String isbn) {
-        Libro savedBook = repository.save(book);
+    public ResponseEntity<LibroJPA> updateBook(@RequestBody LibroJPA book, @PathVariable String isbn) {
+        LibroJPA savedBook = repository.save(book);
         return ResponseEntity.ok().body(savedBook);
     }
 
