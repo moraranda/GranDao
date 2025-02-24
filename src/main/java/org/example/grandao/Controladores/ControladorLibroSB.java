@@ -2,7 +2,6 @@ package org.example.grandao.Controladores;
 
 import org.example.grandao.Entidades.Libro;
 import org.example.grandao.Repositorio.RepositorioLibroSB;
-import org.example.grandao.Repositorio.RepositorioUsuarioSB;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.ResponseEntity;
@@ -12,19 +11,19 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/libroSB")
-public class ConotroladorLibroSB {
+public class ControladorLibroSB {
 
     RepositorioLibroSB repository;
 
     @Autowired
-    public ConotroladorLibroSB(RepositorioLibroSB repository) {
+    public ControladorLibroSB(RepositorioLibroSB repository) {
         this.repository = repository;
     }
 
     // GET -> SELECT
     @GetMapping
     public ResponseEntity<List<Libro>> getBooks() {
-        List<Libro> books = repository.findAll();
+        List<Libro> books = this.repository.findAll();
         System.out.println(books);
 
         return ResponseEntity.ok(books);
@@ -34,14 +33,14 @@ public class ConotroladorLibroSB {
     @GetMapping("/{id}")
     @Cacheable
     public ResponseEntity<Libro> getBookById(@PathVariable String isbn) {
-        Libro book = repository.findById(isbn).get();
+        Libro book = this.repository.findById(isbn).get();
         return ResponseEntity.ok(book);
     }
 
     // POST -> INSERT
     @PostMapping("/libro")
     public ResponseEntity<Libro> addBook(@RequestBody Libro book) {
-        Libro savedBooks = repository.save(book);
+        Libro savedBooks = this.repository.save(book);
         return ResponseEntity.ok().body(savedBooks);
     }
 
