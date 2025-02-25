@@ -40,7 +40,7 @@ public class UsuarioFicheroDAO {
 
     // Metodo para insertar un usuario en el fichero
     public void insertarUsuario(UsuarioFichero usuario) throws IOException {
-        usuario.setId(Integer.valueOf(UUID.randomUUID().toString())); // Genera un ID único
+        usuario.setId(UUID.randomUUID().toString()); // Genera un ID único
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(rutaArchivo, true))) {
             // Formatear el usuario como una línea de texto
             String linea = formatearUsuarioComoLinea(usuario);
@@ -54,7 +54,7 @@ public class UsuarioFicheroDAO {
         String[] partes = linea.split(", ");
         if (partes.length == 4) {
             UsuarioFichero usuario = new UsuarioFichero();
-            usuario.setId(Integer.valueOf(partes[0]));
+            usuario.setId(partes[0]);
             usuario.setDni(partes[1]);
             usuario.setNombre(partes[2]);
             usuario.setPassword(partes[3]);
