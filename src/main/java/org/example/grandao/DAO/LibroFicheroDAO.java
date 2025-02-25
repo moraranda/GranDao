@@ -1,5 +1,6 @@
 package org.example.grandao.DAO;
 
+import org.example.grandao.Entidades.LibroFichero;
 import org.example.grandao.Entidades.LibroJPA;
 
 import java.io.*;
@@ -16,8 +17,8 @@ public class LibroFicheroDAO {
     }
 
     // Metodo para leer todos los libros desde el fichero
-    public List<LibroJPA> readBooks() throws IOException {
-        List<LibroJPA> books = new ArrayList<>();
+    public List<LibroFichero> readBooks() throws IOException {
+        List<LibroFichero> books = new ArrayList<>();
         File file = new File(filePath);
 
         // Si el archivo no existe, retornar una lista vacía
@@ -29,7 +30,7 @@ public class LibroFicheroDAO {
             String linea;
             while ((linea = reader.readLine()) != null) {
 
-                LibroJPA libro = parseLineAsBook(linea);
+                LibroFichero libro = parseLineAsBook(linea);
                 if (libro != null) {
                     books.add(libro);
                 }
@@ -39,7 +40,7 @@ public class LibroFicheroDAO {
     }
 
     // Metodo para insertar un libro en el fichero
-    public void addBook(LibroJPA book) throws IOException {
+    public void addBook(LibroFichero book) throws IOException {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath, true))) {
             // Formatear el libro como una línea de texto
             String line = formatBookAsLine(book);
@@ -49,11 +50,11 @@ public class LibroFicheroDAO {
     }
 
     // Metodo para parsear una línea de texto a un objeto Libro
-    private LibroJPA parseLineAsBook(String line) {
+    private LibroFichero parseLineAsBook(String line) {
         String[] parts = line.split(", ");
 
         if (parts.length == 3) {
-            LibroJPA book = new LibroJPA();
+            LibroFichero book = new LibroFichero();
 
             book.setIsbn(parts[0]);
             book.setTitulo(parts[1]);
@@ -66,7 +67,7 @@ public class LibroFicheroDAO {
     }
 
     // Metodo para formatear un objeto Libro como una línea de texto
-    private String formatBookAsLine(LibroJPA book) {
+    private String formatBookAsLine(LibroFichero book) {
         return book.getIsbn() + ", " + book.getTitulo() + ", " + book.getAutor();
     }
 }

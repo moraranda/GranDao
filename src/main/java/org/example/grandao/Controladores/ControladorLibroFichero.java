@@ -1,6 +1,7 @@
 package org.example.grandao.Controladores;
 
 import org.example.grandao.DAO.LibroFicheroDAO;
+import org.example.grandao.Entidades.LibroFichero;
 import org.example.grandao.Entidades.LibroJPA;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,7 +17,7 @@ public class ControladorLibroFichero {
 
     // Leer todos los libros del archivo
     @GetMapping
-    public List<LibroJPA> getAllBooks() {
+    public List<LibroFichero> getAllBooks() {
         try {
             return libroFicheroDAO.readBooks();
         } catch (IOException e) {
@@ -27,7 +28,7 @@ public class ControladorLibroFichero {
 
     // Agregar un libro al archivo
     @PostMapping
-    public ResponseEntity<String> addBook(@RequestBody LibroJPA libro) {
+    public ResponseEntity<String> addBook(@RequestBody LibroFichero libro) {
         try {
             libroFicheroDAO.addBook(libro);
             return ResponseEntity.status(201).body("Libro agregado exitosamente.");
