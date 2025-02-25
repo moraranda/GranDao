@@ -25,7 +25,7 @@ public class ControladorLibroMDB {
     // Obtenemos un libro según su ISBN
     @GetMapping("/{isbn}")
     public ResponseEntity<LibroMDB> findById(@PathVariable String isbn) {
-            Optional<LibroMDB> book = bookRepository.findById(isbn);
+        Optional<LibroMDB> book = bookRepository.findById(isbn);
         return book.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
