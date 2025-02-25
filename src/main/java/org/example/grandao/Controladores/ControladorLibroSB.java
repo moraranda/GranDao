@@ -30,7 +30,7 @@ public class ControladorLibroSB {
     }
 
     // GET BY ID -> SELECT BY ID
-    @GetMapping("/{id}")
+    @GetMapping("/{isbn}")
     @Cacheable
     public ResponseEntity<LibroJPA> getBookById(@PathVariable String isbn) {
         LibroJPA book = this.repository.findById(isbn).get();
@@ -45,14 +45,14 @@ public class ControladorLibroSB {
     }
 
     // PUT -> UPDATE
-    @PutMapping("/{id}")
+    @PutMapping("/{isbn}")
     public ResponseEntity<LibroJPA> updateBook(@RequestBody LibroJPA book, @PathVariable String isbn) {
         LibroJPA savedBook = repository.save(book);
         return ResponseEntity.ok().body(savedBook);
     }
 
     // DELETE
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/{isbn}")
     public ResponseEntity<String> deleteBook(@PathVariable String isbn) {
         repository.deleteById(isbn);
         String message = "Libro con ISBN " + isbn + " eliminado correctamente.";
