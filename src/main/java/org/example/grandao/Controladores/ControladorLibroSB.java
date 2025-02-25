@@ -29,7 +29,7 @@ public class ControladorLibroSB {
         return ResponseEntity.ok(books);
     }
 
-    // GET BY ID -> SELECT BY ID
+    // GET BY ID -> SELECT BY ISBN
     @GetMapping("/{isbn}")
     @Cacheable
     public ResponseEntity<LibroJPA> getBookById(@PathVariable String isbn) {
