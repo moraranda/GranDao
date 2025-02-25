@@ -1,12 +1,11 @@
 package org.example.grandao.DAO;
 
-
-import org.example.grandao.Entidades.UsuarioFichero;
 import org.example.grandao.Entidades.UsuarioFichero;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class UsuarioFicheroDAO {
 
@@ -30,7 +29,6 @@ public class UsuarioFicheroDAO {
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
             String linea;
             while ((linea = reader.readLine()) != null) {
-
                 UsuarioFichero usuario = parsearLineaAUsuario(linea);
                 if (usuario != null) {
                     usuarios.add(usuario);
@@ -42,6 +40,7 @@ public class UsuarioFicheroDAO {
 
     // Metodo para insertar un usuario en el fichero
     public void insertarUsuario(UsuarioFichero usuario) throws IOException {
+        usuario.setId(Integer.valueOf(UUID.randomUUID().toString())); // Genera un ID único
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(rutaArchivo, true))) {
             // Formatear el usuario como una línea de texto
             String linea = formatearUsuarioComoLinea(usuario);
@@ -55,6 +54,7 @@ public class UsuarioFicheroDAO {
         String[] partes = linea.split(", ");
         if (partes.length == 4) {
             UsuarioFichero usuario = new UsuarioFichero();
+            usuario.setId(Integer.valueOf(partes[0]));
             usuario.setDni(partes[1]);
             usuario.setNombre(partes[2]);
             usuario.setPassword(partes[3]);
