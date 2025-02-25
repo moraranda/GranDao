@@ -1,6 +1,6 @@
 package org.example.grandao.DAO;
 
-import org.example.grandao.Entidades.LibroJPA;
+import org.example.grandao.Entidades.LibroXML;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -16,38 +16,35 @@ import java.util.List;
 @XmlRootElement(name = "libros")
 public class LibroXMLDAO {
 
-    private List<LibroJPA> books = new ArrayList<>();
+    private List<LibroXML> books = new ArrayList<>();
 
     @XmlElement(name = "libro")
-    public List<LibroJPA> getBooks() {
+    public List<LibroXML> getBooks() {
         return books;
     }
 
-    public void setBooks(List<LibroJPA> books) {
+    public void setBooks(List<LibroXML> books) {
         this.books = books;
     }
 
     // Metodo para leer libros desde el archivo XML
-    public List<LibroJPA> readBooksFromXML(String filePath) throws JAXBException {
+    public List<LibroXML> readBooksFromXML(String filePath) throws JAXBException {
         File file = new File(filePath);
+        if (!file.exists() || file.length() == 0) {
+            return new ArrayList<>();
+        }
         JAXBContext context = JAXBContext.newInstance(LibroXMLDAO.class);
-
         Unmarshaller unmarshaller = context.createUnmarshaller();
         LibroXMLDAO libroXMLDAO = (LibroXMLDAO) unmarshaller.unmarshal(file);
-
         return libroXMLDAO.getBooks();
     }
 
     // Metodo para insertar un libro en el archivo XML
-    public void insertBookInXML(LibroJPA book, String filePath) throws JAXBException {
-        List<LibroJPA> books = readBooksFromXML(filePath);
-
-        // Agregamos el nuevo libro
+    public void insertBookInXML(LibroXML book, String filePath) throws JAXBException {
+        List<LibroXML> books = readBooksFromXML(filePath);
         books.add(book);
-
         LibroXMLDAO libroXMLDAO = new LibroXMLDAO();
         libroXMLDAO.setBooks(books);
-
         JAXBContext context = JAXBContext.newInstance(LibroXMLDAO.class);
         Marshaller marshaller = context.createMarshaller();
         marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);

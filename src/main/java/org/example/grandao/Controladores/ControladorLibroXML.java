@@ -2,6 +2,7 @@ package org.example.grandao.Controladores;
 
 import org.example.grandao.DAO.LibroXMLDAO;
 import org.example.grandao.Entidades.LibroJPA;
+import org.example.grandao.Entidades.LibroXML;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,12 +15,12 @@ import java.util.List;
 @RequestMapping("/libroXML")
 public class ControladorLibroXML {
 
-    private final String filePath = "src/main/resources/libros.xml"; // Archivo XML dentro de resources
+    private final String filePath = "src/main/resources/archivos/libros.xml"; // Archivo XML dentro de resources
     private final LibroXMLDAO libroXMLDAO = new LibroXMLDAO();
 
     // Leer todos los libros del archivo XML
     @GetMapping
-    public List<LibroJPA> getAllBooks() {
+    public List<LibroXML> getAllBooks() {
         try {
             File file = new File(filePath);
             if (!file.exists()) {
@@ -34,7 +35,7 @@ public class ControladorLibroXML {
 
     // Agregar un libro al archivo XML
     @PostMapping
-    public ResponseEntity<String> addBook(@RequestBody LibroJPA libro) {
+    public ResponseEntity<String> addBook(@RequestBody LibroXML libro) {
         try {
             File file = new File(filePath);
             if (!file.exists()) {
