@@ -12,7 +12,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/librosFichero")
 public class ControladorLibroFichero {
-    private final String filePath = "libros.txt"; // Ruta del archivo
+    private final String filePath = "src/resources/archivos/libros.txt"; // Ruta del archivo
     private final LibroFicheroDAO libroFicheroDAO = new LibroFicheroDAO(filePath);
 
     // Leer todos los libros del archivo
