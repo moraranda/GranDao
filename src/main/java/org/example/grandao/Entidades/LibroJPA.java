@@ -4,11 +4,10 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 @Data
 @Entity
-//@Table(name = "libro")
+@Table(name = "libro")
 public class LibroJPA {
     @Id
     @Size(max = 20)
@@ -24,5 +23,4 @@ public class LibroJPA {
     @NotNull
     @Column(name = "autor", nullable = false, length = 100)
     private String autor;
-
 }
