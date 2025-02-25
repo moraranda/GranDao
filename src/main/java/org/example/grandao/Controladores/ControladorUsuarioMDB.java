@@ -29,7 +29,7 @@ public class ControladorUsuarioMDB {
     }
 
     // Crear un usuario
-    @PostMapping
+    @PostMapping("/usuario")
     public UsuarioMDB save(@RequestBody UsuarioMDB usuario) {
         return usuarioRepository.save(usuario);
     }

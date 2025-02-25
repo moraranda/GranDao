@@ -1,10 +1,8 @@
 package org.example.grandao.Controladores;
 
-import org.example.grandao.Entidades.LibroJPA;
 import org.example.grandao.Entidades.LibroMDB;
 import org.example.grandao.RepositorioMDB.RepositorioLibroMDB;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,10 +29,9 @@ public class ControladorLibroMDB {
         return book.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @PostMapping
-    public ResponseEntity<LibroMDB> save(@RequestBody LibroMDB book) {
-        LibroMDB savedBook = bookRepository.save(book);
-        return ResponseEntity.status(HttpStatus.CREATED).body(savedBook);
+    @PostMapping("/libro")
+    public LibroMDB save(@RequestBody LibroMDB book) {
+        return bookRepository.save(book);
     }
 
     @DeleteMapping("/{isbn}")
@@ -49,7 +46,7 @@ public class ControladorLibroMDB {
 
     // Actualizamos un libro según su ISBN
     @PutMapping("/{isbn}")
-    public ResponseEntity<LibroMDB> update(@PathVariable String isbn, @RequestBody LibroJPA bookDetails) {
+    public ResponseEntity<LibroMDB> update(@PathVariable String isbn, @RequestBody LibroMDB bookDetails) {
         Optional<LibroMDB> bookOptional = bookRepository.findById(isbn);
 
         if (bookOptional.isPresent()) {
