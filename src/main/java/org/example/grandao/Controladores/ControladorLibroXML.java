@@ -6,33 +6,43 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.xml.bind.JAXBException;
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 @RestController
-@RequestMapping("/librosXML")
+@RequestMapping("/libroXML")
 public class ControladorLibroXML {
-    private final String filePath = "libros.xml"; // Ruta del archivo XML
+
+    private final String filePath = "src/main/resources/libros.xml"; // Archivo XML dentro de resources
     private final LibroXMLDAO libroXMLDAO = new LibroXMLDAO();
 
-    // Obtener todos los libros desde el archivo XML
+    // Leer todos los libros del archivo XML
     @GetMapping
-    public ResponseEntity<List<LibroJPA>> getAllBooks() {
+    public List<LibroJPA> getAllBooks() {
         try {
-            List<LibroJPA> libros = libroXMLDAO.readBooksFromXML(filePath);
-            return ResponseEntity.ok(libros);
-        } catch (JAXBException e) {
+            File file = new File(filePath);
+            if (!file.exists()) {
+                file.createNewFile(); // Crea el archivo si no existe
+            }
+            return libroXMLDAO.readBooksFromXML(filePath);
+        } catch (JAXBException | IOException e) {
             e.printStackTrace();
-            return ResponseEntity.status(500).body(null);
+            return List.of();  // Retorna una lista vacía en caso de error
         }
     }
 
-    // Insertar un nuevo libro en el archivo XML
+    // Agregar un libro al archivo XML
     @PostMapping
     public ResponseEntity<String> addBook(@RequestBody LibroJPA libro) {
         try {
+            File file = new File(filePath);
+            if (!file.exists()) {
+                file.createNewFile(); // Crea el archivo si no existe
+            }
             libroXMLDAO.insertBookInXML(libro, filePath);
             return ResponseEntity.status(201).body("Libro agregado exitosamente.");
-        } catch (JAXBException e) {
+        } catch (JAXBException | IOException e) {
             e.printStackTrace();
             return ResponseEntity.status(500).body("Error al agregar el libro.");
         }

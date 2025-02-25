@@ -26,23 +26,23 @@ public class UsuarioXMLDAO {
         this.usuarios = usuarios;
     }
 
-    // Metodo para leer usuarios desde el archivo XML
+    // Método para leer usuarios desde el archivo XML
     public List<UsuarioJPA> leerUsuariosDesdeXML(String rutaArchivo) throws JAXBException {
         File file = new File(rutaArchivo);
         JAXBContext context = JAXBContext.newInstance(UsuarioXMLDAO.class);
+
         Unmarshaller unmarshaller = context.createUnmarshaller();
         UsuarioXMLDAO usuarioXMLDAO = (UsuarioXMLDAO) unmarshaller.unmarshal(file);
+
         return usuarioXMLDAO.getUsuarios();
     }
 
-    // Metodo para insertar un usuario en el archivo XML
+    // Método para insertar un usuario en el archivo XML
     public void insertarUsuarioEnXML(UsuarioJPA usuario, String rutaArchivo) throws JAXBException {
-
         List<UsuarioJPA> usuarios = leerUsuariosDesdeXML(rutaArchivo);
 
-        // Agregar el nuevo usuario
+        // Agregamos el nuevo usuario
         usuarios.add(usuario);
-
 
         UsuarioXMLDAO usuarioXMLDAO = new UsuarioXMLDAO();
         usuarioXMLDAO.setUsuarios(usuarios);
