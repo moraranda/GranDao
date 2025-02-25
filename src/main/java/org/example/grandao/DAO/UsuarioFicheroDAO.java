@@ -1,6 +1,8 @@
 package org.example.grandao.DAO;
 
-import org.example.grandao.Entidades.UsuarioJPA;
+
+import org.example.grandao.Entidades.UsuarioFichero;
+import org.example.grandao.Entidades.UsuarioFichero;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -16,8 +18,8 @@ public class UsuarioFicheroDAO {
     }
 
     // Metodo para leer todos los usuarios desde el fichero
-    public List<UsuarioJPA> leerUsuarios() throws IOException {
-        List<UsuarioJPA> usuarios = new ArrayList<>();
+    public List<UsuarioFichero> leerUsuarios() throws IOException {
+        List<UsuarioFichero> usuarios = new ArrayList<>();
         File file = new File(rutaArchivo);
 
         // Si el archivo no existe, retornar una lista vacía
@@ -29,7 +31,7 @@ public class UsuarioFicheroDAO {
             String linea;
             while ((linea = reader.readLine()) != null) {
 
-                UsuarioJPA usuario = parsearLineaAUsuario(linea);
+                UsuarioFichero usuario = parsearLineaAUsuario(linea);
                 if (usuario != null) {
                     usuarios.add(usuario);
                 }
@@ -39,7 +41,7 @@ public class UsuarioFicheroDAO {
     }
 
     // Metodo para insertar un usuario en el fichero
-    public void insertarUsuario(UsuarioJPA usuario) throws IOException {
+    public void insertarUsuario(UsuarioFichero usuario) throws IOException {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(rutaArchivo, true))) {
             // Formatear el usuario como una línea de texto
             String linea = formatearUsuarioComoLinea(usuario);
@@ -49,11 +51,10 @@ public class UsuarioFicheroDAO {
     }
 
     // Metodo para parsear una línea de texto a un objeto Usuario
-    private UsuarioJPA parsearLineaAUsuario(String linea) {
+    private UsuarioFichero parsearLineaAUsuario(String linea) {
         String[] partes = linea.split(", ");
         if (partes.length == 4) {
-            UsuarioJPA usuario = new UsuarioJPA();
-            usuario.setId(Integer.parseInt(partes[0]));
+            UsuarioFichero usuario = new UsuarioFichero();
             usuario.setDni(partes[1]);
             usuario.setNombre(partes[2]);
             usuario.setPassword(partes[3]);
@@ -63,7 +64,7 @@ public class UsuarioFicheroDAO {
     }
 
     // Metodo para formatear un objeto Usuario como una línea de texto
-    private String formatearUsuarioComoLinea(UsuarioJPA usuario) {
+    private String formatearUsuarioComoLinea(UsuarioFichero usuario) {
         return usuario.getId() + ", " + usuario.getDni() + ", " + usuario.getNombre() + ", " + usuario.getPassword();
     }
 }
