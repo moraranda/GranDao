@@ -3,6 +3,8 @@ package org.example.grandao.Entidades;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 
+//CLase de Usuario hecha para XML
+
 @XmlRootElement(name = "usuario")
 public class UsuarioXML implements Serializable {
 

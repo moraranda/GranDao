@@ -4,6 +4,8 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 
+//Clase de Libro para xml
+
 @XmlRootElement(name = "libro")
 public class LibroXML implements Serializable {
 

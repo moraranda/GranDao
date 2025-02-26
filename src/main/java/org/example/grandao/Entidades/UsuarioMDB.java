@@ -2,9 +2,9 @@ package org.example.grandao.Entidades;
 
 
 import lombok.Data;
-
-
 import org.springframework.data.mongodb.core.mapping.Document;
+
+//Clase de Usuario hecha para MongoDB
 
 @Data
 @Document(collection = "usuario")
