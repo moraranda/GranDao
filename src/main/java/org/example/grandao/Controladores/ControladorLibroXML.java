@@ -1,7 +1,6 @@
 package org.example.grandao.Controladores;
 
 import org.example.grandao.DAO.LibroXMLDAO;
-import org.example.grandao.Entidades.LibroJPA;
 import org.example.grandao.Entidades.LibroXML;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
