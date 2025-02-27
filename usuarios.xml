@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<usuarios>
+    <usuario>
+        <dni>12345678A</dni>
+        <id>1</id>
+        <nombre>Juan Pérez</nombre>
+        <password>pass123</password>
+    </usuario>
+</usuarios>

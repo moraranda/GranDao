@@ -15,7 +15,7 @@ import java.util.List;
 @RequestMapping("/libroXML")
 public class ControladorLibroXML {
 
-    private final String filePath = "src/main/resources/archivos/libros.xml"; // Archivo XML dentro de resources
+    private final String filePath = "libros.xml"; // Archivo XML dentro de resources
     private final LibroXMLDAO libroXMLDAO = new LibroXMLDAO();
 
     // Leer todos los libros del archivo XML

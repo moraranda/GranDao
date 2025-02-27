@@ -11,7 +11,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/usuarioFichero")
 public class ControladorUsuarioFichero {
-    private final String rutaArchivo = "src/resource/archivos/usuario.txt"; // Ruta del archivo
+    private final String rutaArchivo = "usuario.txt"; // Ruta del archivo
     private final UsuarioFicheroDAO usuarioFicheroDAO = new UsuarioFicheroDAO(rutaArchivo);
 
     // Leer todos los usuarios desde el archivo

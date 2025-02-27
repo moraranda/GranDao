@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<libros>
+    <libro>
+        <autor>George Orwell</autor>
+        <isbn>978-0-14-303995-2</isbn>
+        <titulo>1984</titulo>
+    </libro>
+</libros>

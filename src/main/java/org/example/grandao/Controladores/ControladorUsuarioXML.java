@@ -13,7 +13,7 @@ import java.util.List;
 @RequestMapping("/usuariosXML")
 public class ControladorUsuarioXML {
 
-    private final String filePath = "src/main/resources/archivos/usuarios.xml";
+    private final String filePath = "usuarios.xml";
     private final UsuarioXMLDAO usuarioXMLDAO = new UsuarioXMLDAO();
 
     // Obtener todos los usuarios desde el archivo XML

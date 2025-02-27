@@ -1,6 +1,0 @@
-null, 1234353478A, JHaaa Pérez, pass123
-null, 1234353478A, JHaaa Pérez, pass123
-null, 1234353478A, JHaaa Pérez, pass123
-null, null, null, null
-1a4a04c4-d9a2-421c-aab3-12eb7ad60c16, 1234353478A, JHaaa Pérez, pass123
-060f57c3-dfdd-42d6-91ea-b3bee4390c6a, 1234353478A, JHaaa Pérez, pass123
